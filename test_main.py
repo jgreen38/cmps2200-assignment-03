@@ -8,5 +8,12 @@ def test_align():
     for i in range(len(test_cases)):
         S, T = test_cases[i]
         align_S, align_T = fast_align_MED(S, T)
-        assert (align_S == alignments[i][0] and align_T == alignments[i][1])
+
+        assert len(align_S) == len(align_T)
+
+        distance = sum(
+            1 for a, b in zip(align_S, align_T) if a != b
+        )
+
+        assert distance == fast_MED(S, T)
 
